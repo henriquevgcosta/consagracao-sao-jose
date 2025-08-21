@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>São José, rogai por nós!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" type="imagex/png" href="saojose.png">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffe0ec 0%, #fffde4 50%, #e0f7fa 100%);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #5a3825;
+      margin-top: 2rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin: 10px 0;
+      color: #7c5036;
+    }
+
+    .bouquet {
+      margin: 20px 0;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .bouquet img {
+      width: 220px;
+      border-radius: 12px;
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .messages {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem;
+    }
+
+    .card {
+      background-image: url('eujoca.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 20px;
+      padding: 1.5rem;
+      width: 280px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: #fff;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+    }
+
+    .hidden-text {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .intentions {
+      background: #fff;
+      margin: 3rem auto;
+      padding: 2rem;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    input[type="text"] {
+      padding: 0.7rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 70%;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.7rem 1rem;
+      border: none;
+      border-radius: 10px;
+      background: #5a3825;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-left: 5px;
+    }
+
+    button:hover {
+      background: #7b4e36;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    li {
+      background: #f4f4f4;
+      margin: 0.5rem 0;
+      padding: 0.7rem;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li button {
+      background: #c0392b;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.8rem;
+      border-radius: 6px;
+    }
+
+    .prayer-message {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #5a3825;
+      display: none;
+    }
+
+    /* Pétalas */
+    .petals {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -10%;
+      font-size: 1.2rem;
+      color: #f4b6b6;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .bouquet img { width: 150px; }
+      .card { width: 90%; }
+      input[type="text"] { width: 60%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="petals"></div>
+
+  <h1>🌸 Um buquê de lírios para você, Joca 🌸</h1>
+
+  <div class="bouquet">
+    <img src="lirios.jpg" alt="Buquê de Lírios">
+  </div>
+
+  <section class="messages">
+    <div class="card" onclick="toggleMessage('jose')">
+      <h2>💠 São José</h2>
+      <p class="hidden-text" id="jose">
+        “São José, exemplo de silêncio, confiança e fidelidade, que sua consagração a ele seja fonte de paz, proteção e coragem em sua vida.”
+      </p>
+    </div>
+
+    <div class="card" onclick="toggleMessage('maria')">
+      <h2>🌹 Maria</h2>
+      <p class="hidden-text" id="maria">
+        “Maria, Mãe da Igreja, Nossa Senhora, interceda para que cada passo seu seja cheio da graça de Deus e do amor de Mãe.”
+      </p>
+    </div>
+
+    <div class="card" onclick="toggleMessage('henrique')">
+      <h2>💌 Ique</h2>
+      <p class="hidden-text" id="henrique">
+        Joca, que essa entrega a São José fortaleça sua fé e que seu coração se renove de muita paz e amor. Você me motiva a ser mais de Deus, minha maior inspiração! 
+      </p>
+    </div>
+  </section>
+
+  <section class="intentions">
+    <h2>🙏 Suas intenções de oração</h2>
+    <p>Escreva suas intenções para que São José interceda por você.</p>
+    <input type="text" id="intentionInput" placeholder="Escreva uma intenção...">
+    <button onclick="addIntention()">Enviar</button>
+    <p class="prayer-message" id="prayerMsg">São José, rogai por nós!</p>
+    <ul id="intentionList"></ul>
+  </section>
+
+  <script>
+    // Mostrar/ocultar mensagens
+    function toggleMessage(id) {
+      const msg = document.getElementById(id);
+      msg.style.display = (msg.style.display === "block") ? "none" : "block";
+    }
+
+    // Adicionar/remover intenções
+    function addIntention() {
+      const input = document.getElementById('intentionInput');
+      if (input.value.trim() === "") return;
+
+      const list = document.getElementById('intentionList');
+      const li = document.createElement('li');
+      li.textContent = input.value;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = "x";
+      removeBtn.onclick = () => {
+        list.removeChild(li);
+        saveIntentions();
+      };
+
+      li.appendChild(removeBtn);
+      list.appendChild(li);
+      input.value = "";
+
+      const prayer = document.getElementById('prayerMsg');
+      prayer.style.display = "block";
+      setTimeout(() => prayer.style.display = "none", 2000);
+
+      saveIntentions();
+    }
+
+    // Salvar intenções no localStorage
+    function saveIntentions() {
+      const listItems = document.querySelectorAll("#intentionList li");
+      const intentions = [];
+      listItems.forEach(li => intentions.push(li.firstChild.textContent));
+      localStorage.setItem("intentions", JSON.stringify(intentions));
+    }
+
+    // Carregar intenções do localStorage
+    function loadIntentions() {
+      const saved = JSON.parse(localStorage.getItem("intentions")) || [];
+      const list = document.getElementById("intentionList");
+      saved.forEach(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = "x";
+        removeBtn.onclick = () => {
+          list.removeChild(li);
+          saveIntentions();
+        };
+
+        li.appendChild(removeBtn);
+        list.appendChild(li);
+      });
+    }
+
+    window.onload = () => {
+      loadIntentions();
+      setInterval(createPetals, 400);
+    };
+
+    // Pétalas caindo
+    function createPetals() {
+      const petalsContainer = document.querySelector(".petals");
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.innerHTML = "🌸";
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = (3 + Math.random() * 5) + "s";
+      petal.style.fontSize = (0.8 + Math.random() * 1.5) + "rem";
+
+      petalsContainer.appendChild(petal);
+      setTimeout(() => petal.remove(), 8000);
+    }
+  </script>
+</body>
+</html>
